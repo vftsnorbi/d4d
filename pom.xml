@@ -11,20 +11,49 @@
 
     <modules>
         <module>d4d-persistence</module>
+        <module>d4d-model</module>
+        <module>d4d-ear</module>
+        <module>d4d-backend</module>
     </modules>
 
     <properties>
         <liquibase.version>3.6.2</liquibase.version>
         <mysql.version>8.0.12</mysql.version>
+
+        <java.ee.version>8.0</java.ee.version>
+        <javax.persistence.version>2.2.0</javax.persistence.version>
+        <hibernate.version>5.3.4.Final</hibernate.version>
+        <lombok.version>1.18.2</lombok.version>
+
+        <maven.wildfly.plugin.version>1.2.2.Final</maven.wildfly.plugin.version>
     </properties>
 
     <dependencyManagement>
-        <!-- Persistence -->
         <dependencies>
+            <!--Model-->
             <dependency>
-                <groupId>mysql</groupId>
-                <artifactId>mysql-connector-java</artifactId>
-                <version>${mysql.version}</version>
+                <groupId>org.eclipse.persistence</groupId>
+                <artifactId>javax.persistence</artifactId>
+                <version>${javax.persistence.version}</version>
+                <scope>provided</scope>
+            </dependency>
+            <dependency>
+                <groupId>org.projectlombok</groupId>
+                <artifactId>lombok</artifactId>
+                <version>${lombok.version}</version>
+                <scope>provided</scope>
+            </dependency>
+            <dependency>
+                <groupId>org.hibernate</groupId>
+                <artifactId>hibernate-core</artifactId>
+                <version>${hibernate.version}</version>
+                <scope>provided</scope>
+            </dependency>
+            <dependency>
+                <groupId>javax</groupId>
+                <artifactId>javaee-api</artifactId>
+                <version>${java.ee.version}</version>
+                <scope>provided</scope>
             </dependency>
         </dependencies>
     </dependencyManagement>
@@ -41,6 +70,11 @@
                 <mysql.db>dummy</mysql.db>
                 <mysql.login>norbi</mysql.login>
                 <mysql.password>norbi123</mysql.password>
+
+                <d4d.wildfly.host>localhost</d4d.wildfly.host>
+                <d4d.wildfly.port>9990</d4d.wildfly.port>
+                <d4d.wildfly.username>admin</d4d.wildfly.username>
+                <d4d.wildfly.password>admin</d4d.wildfly.password>
             </properties>
         </profile>
     </profiles>

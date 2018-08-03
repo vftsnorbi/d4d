@@ -1,0 +1,90 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <parent>
+        <artifactId>d4d</artifactId>
+        <groupId>hu.krisztn</groupId>
+        <version>1.0-SNAPSHOT</version>
+    </parent>
+    <modelVersion>4.0.0</modelVersion>
+
+    <artifactId>d4d-ear</artifactId>
+    <packaging>ear</packaging>
+
+    <build>
+        <finalName>${project.artifactId}</finalName>
+        <plugins>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-compiler-plugin</artifactId>
+                <configuration>
+                    <source>8</source>
+                    <target>8</target>
+                </configuration>
+            </plugin>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-ear-plugin</artifactId>
+                <version>3.0.1</version>
+                <configuration>
+                    <jboss>
+                        <version>5</version>
+                    </jboss>
+                    <outputFileNameMapping>@{artifactId}@.@{extension}@</outputFileNameMapping>
+                    <defaultLibBundleDir>lib</defaultLibBundleDir>
+                    <version>8</version>
+                    <modules>
+                        <jarModule>
+                            <groupId>hu.krisztn</groupId>
+                            <artifactId>d4d-model</artifactId>
+                        </jarModule>
+                        <ejbModule>
+                            <groupId>hu.krisztn</groupId>
+                            <artifactId>d4d-backend</artifactId>
+                        </ejbModule>
+                    </modules>
+                </configuration>
+            </plugin>
+
+            <plugin>
+                <groupId>org.wildfly.plugins</groupId>
+                <artifactId>wildfly-maven-plugin</artifactId>
+                <version>${maven.wildfly.plugin.version}</version>
+                <configuration>
+                    <hostname>${d4d.wildfly.host}</hostname>
+                    <port>${d4d.wildfly.port}</port>
+                    <username>${d4d.wildfly.username}</username>
+                    <password>${d4d.wildfly.password}</password>
+                </configuration>
+            </plugin>
+        </plugins>
+
+        <pluginManagement>
+            <plugins>
+                <plugin>
+                    <groupId>org.apache.maven.plugins</groupId>
+                    <artifactId>maven-ear-plugin</artifactId>
+                    <version>3.0.1</version>
+                </plugin>
+            </plugins>
+        </pluginManagement>
+    </build>
+
+    <dependencies>
+        <dependency>
+            <groupId>hu.krisztn</groupId>
+            <artifactId>d4d-model</artifactId>
+            <version>${project.version}</version>
+            <type>jar</type>
+        </dependency>
+        <dependency>
+            <groupId>hu.krisztn</groupId>
+            <artifactId>d4d-backend</artifactId>
+            <version>${project.version}</version>
+            <type>ejb</type>
+        </dependency>
+    </dependencies>
+
+
+</project>
