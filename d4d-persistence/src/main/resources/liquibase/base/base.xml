@@ -9,7 +9,7 @@
     <changeSet id="create_user_table" author="norbert.kriszt" dbms="mysql">
         <createSequence sequenceName="S_USER" cacheSize="50" incrementBy="1" startValue="1" minValue="1"/>
         <createTable tableName="USER">
-            <column name="ID" type="BIGINT UNSIGNED" remarks="Identity Column">
+            <column name="ID" type="BINARY(16)" remarks="Identity Column">
                 <constraints primaryKey="true" primaryKeyName="PK_USER" nullable="false"/>
             </column>
             <column name="VERSION" type="BIGINT UNSIGNED" remarks="JPA Version Column"/>
