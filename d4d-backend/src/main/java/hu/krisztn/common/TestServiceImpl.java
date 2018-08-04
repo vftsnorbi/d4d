@@ -22,11 +22,12 @@ public class TestServiceImpl {
     @PostConstruct
     public void init() {
         User user = new User();
-        user.setPassword("norbi123");
+        user.setPassword("admin123");
         user.setBirthDate(LocalDate.of(1989, 05, 29));
-        user.setLastName("Kriszt");
-        user.setFirstName("Norbert");
-        user.setUserName("norbi");
+        user.setEmail("norbert.kriszt@gmail.com");
+        user.setLastName("Admin");
+        user.setFirstName("Admin");
+        user.setUserName("admin");
 
         commonService.save(user);
     }

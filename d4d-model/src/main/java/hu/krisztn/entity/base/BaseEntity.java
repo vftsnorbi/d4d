@@ -2,6 +2,7 @@ package hu.krisztn.entity.base;
 
 import hu.krisztn.entity.util.ClassCache;
 import lombok.Getter;
+import org.hibernate.annotations.GenericGenerator;
 
 import javax.persistence.*;
 import javax.xml.bind.annotation.XmlTransient;
@@ -14,6 +15,12 @@ import java.util.UUID;
 @Getter
 @MappedSuperclass
 public abstract class BaseEntity implements IEntity {
+
+    @Id
+    @Column(name = "ID", updatable = false, nullable = false, columnDefinition = "BINARY(16)")
+    @GeneratedValue(generator = "UUID")
+    @GenericGenerator(name = "UUID", strategy = "org.hibernate.id.UUIDGenerator")
+    private UUID id;
 
     @Version
     @Column(name = "VERSION")
