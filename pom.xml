@@ -24,6 +24,9 @@
         <javax.persistence.version>2.2.0</javax.persistence.version>
         <hibernate.version>5.3.4.Final</hibernate.version>
         <lombok.version>1.18.2</lombok.version>
+        <argon2.version>2.4</argon2.version>
+
+        <junit.version>4.12</junit.version>
 
         <maven.wildfly.plugin.version>1.2.2.Final</maven.wildfly.plugin.version>
     </properties>
@@ -54,6 +57,20 @@
                 <artifactId>javaee-api</artifactId>
                 <version>${java.ee.version}</version>
                 <scope>provided</scope>
+            </dependency>
+            <dependency>
+                <groupId>de.mkammerer</groupId>
+                <artifactId>argon2-jvm</artifactId>
+                <version>${argon2.version}</version>
+            </dependency>
+
+
+            <!--Test-->
+            <dependency>
+                <groupId>junit</groupId>
+                <artifactId>junit</artifactId>
+                <version>${junit.version}</version>
+                <scope>test</scope>
             </dependency>
         </dependencies>
     </dependencyManagement>
